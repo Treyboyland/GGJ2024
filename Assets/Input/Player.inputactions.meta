@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: c8137fd2aaa6a1a429d558299e3a96de
+guid: cac5f00d46f8e0f4299e22f969c19169
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -11,4 +11,4 @@ ScriptedImporter:
   generateWrapperCode: 0
   wrapperCodePath: 
   wrapperClassName: 
-  wrapperCodeNamespace: 
+  wrapperCodeNamespace: UnityEngine.InputSystem
