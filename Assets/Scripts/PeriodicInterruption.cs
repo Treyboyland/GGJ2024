@@ -14,6 +14,9 @@ public class PeriodicInterruption : MonoBehaviour
     AudioSource source;
 
     [SerializeField]
+    AudioSource backgroundSource;
+
+    [SerializeField]
     AudioClip startingClip;
 
     [SerializeField]
@@ -56,6 +59,7 @@ public class PeriodicInterruption : MonoBehaviour
     IEnumerator PlayAnnouncement()
     {
         playerCurrentstress.Value += stressToAdd.Value;
+        backgroundSource.mute = true;
         source.mute = !playSounds.Value;
         source.clip = startingClip;
         source.Play();
@@ -75,8 +79,9 @@ public class PeriodicInterruption : MonoBehaviour
             yield return null;
         }
 
-        Debug.LogWarning("Done announcing");
+        //Debug.LogWarning("Done announcing");
         source.mute = !playSounds.Value;
+        backgroundSource.mute = !playSounds.Value;
         isAnnouncing = false;
     }
 }

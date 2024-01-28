@@ -10,6 +10,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 04d64300978dc5f4aa3ef528f931fc09, type: 3}
-  m_Name: Float-PlayerDestressByVibe
+  m_Name: Float-PlayerStressOnTheft
   m_EditorClassIdentifier: 
-  value: -7.5
+  value: 30

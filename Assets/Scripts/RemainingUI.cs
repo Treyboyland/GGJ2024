@@ -20,12 +20,6 @@ public class RemainingUI : MonoBehaviour
         UpdateText();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
     public void UpdateText()
     {
         int collected = allCollectibles.Where(x => !x.gameObject.activeInHierarchy).Count();
@@ -42,5 +36,20 @@ public class RemainingUI : MonoBehaviour
     public bool HasAll()
     {
         return allCollectibles.Where(x => x.gameObject.activeInHierarchy).Count() == 0;
+    }
+
+    public bool HasAny()
+    {
+        return allCollectibles.Where(x => !x.gameObject.activeInHierarchy).Count() != 0;
+    }
+
+    public void FailStress()
+    {
+        textBox.text = "Too stressed. Backspace to try again.";
+    }
+
+    public void FailVibe()
+    {
+        textBox.text = "Failed the vibe check. Backspace to try again.";
     }
 }

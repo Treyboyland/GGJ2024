@@ -1,25 +1,26 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
-public class TheftCheck : MonoBehaviour
+public class CashRegister : MonoBehaviour
 {
     [SerializeField]
-    RemainingUI remainingUI;
+    RemainingUI hasAllCheck;
+
+    [SerializeField]
+    BoolValue hasStolen;
 
     [SerializeField]
     AudioSource alarm;
 
     [SerializeField]
-    FloatValue stressForTheft;
+    TMP_Text text;
 
     [SerializeField]
-    FloatValue playerStress;
+    AudioSource thankYouSource;
 
-    [SerializeField]
-    BoolValue hasStolen;
-
-    bool firedOnce = false;
+    bool hasPaid = false;
 
     // Start is called before the first frame update
     void Start()
@@ -27,11 +28,6 @@ public class TheftCheck : MonoBehaviour
 
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
 
     /// <summary>
     /// Sent when another object enters a trigger collider attached to this
@@ -42,31 +38,22 @@ public class TheftCheck : MonoBehaviour
     {
         var player = other.gameObject.GetComponent<Player>();
 
-        if (player)
+        if (player && !hasPaid)
         {
             RunCheck(player);
         }
     }
 
-    void AddStress()
-    {
-        playerStress.Value += stressForTheft.Value;
-    }
 
     void RunCheck(Player player)
     {
-        if (!player.HasPaid && remainingUI.HasAny())
+        if (hasAllCheck.HasAll())
         {
-            hasStolen.Value = true;
-            if(!alarm.isPlaying)
-            {
-                alarm.Play();
-            }
-            if (!firedOnce)
-            {
-                firedOnce = true;
-                AddStress();
-            }
+            player.HasPaid = true;
+            alarm.Stop();
+            hasPaid = true;
+            text.text = "Thank you!";
+            hasStolen.Value = false;
         }
     }
 }

@@ -10,15 +10,6 @@ public class Car : MonoBehaviour
     [SerializeField]
     GameEvent gameWon;
 
-    [SerializeField]
-    GameEvent gameWonStoleStuff;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
     /// <summary>
     /// Sent when another object enters a trigger collider attached to this
     /// object (2D physics only).
@@ -26,6 +17,10 @@ public class Car : MonoBehaviour
     /// <param name="other">The other Collider2D involved in this collision.</param>
     private void OnTriggerEnter2D(Collider2D other)
     {
-        
+        var player = other.gameObject.GetComponent<Player>();
+        if (player && allCollected.HasAll())
+        {
+            gameWon.Invoke();
+        }
     }
 }
