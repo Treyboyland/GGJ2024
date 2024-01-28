@@ -20,6 +20,12 @@ public class WallColliderMatch : MonoBehaviour
                 boxCollider2D.size = spriteRenderer.localBounds.size;
                 boxCollider2D.offset = spriteRenderer.localBounds.center;
             }
+            else if (spriteRenderer.drawMode == SpriteDrawMode.Simple)
+            {
+                float width = spriteRenderer.sprite.textureRect.width / spriteRenderer.sprite.pixelsPerUnit;
+                float height = spriteRenderer.sprite.textureRect.height / spriteRenderer.sprite.pixelsPerUnit;
+                boxCollider2D.size = new Vector2(width, height);
+            }
         }
     }
 }

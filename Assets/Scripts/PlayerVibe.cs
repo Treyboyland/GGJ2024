@@ -9,6 +9,9 @@ public class PlayerVibe : MonoBehaviour
     Player player;
 
     [SerializeField]
+    ConstantStressOnTrigger overworldStress;
+
+    [SerializeField]
     ConstantStress destresser;
 
     [SerializeField]
@@ -28,6 +31,21 @@ public class PlayerVibe : MonoBehaviour
 
     public void HandleVibe(InputAction.CallbackContext context)
     {
+        float active = context.ReadValue<float>();
 
+        Debug.Log("Vibing: " + active);
+
+        if (active > 0)
+        {
+            overworldStress.ShouldRun = false;
+            destresser.IsStressActive = true;
+            vibeIncreaser.IsStressActive = true;
+        }
+        else
+        {
+            overworldStress.ShouldRun = true;
+            destresser.IsStressActive = false;
+            vibeIncreaser.IsStressActive = false;
+        }
     }
 }

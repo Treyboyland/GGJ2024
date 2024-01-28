@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Collectible : MonoBehaviour
 {
+    [SerializeField]
+    GameEvent collectedEvent;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -28,6 +31,7 @@ public class Collectible : MonoBehaviour
         if (player)
         {
             gameObject.SetActive(false);
+            collectedEvent.Invoke();
         }
     }
 }

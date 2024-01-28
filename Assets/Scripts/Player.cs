@@ -8,6 +8,8 @@ public class Player : MonoBehaviour
     [SerializeField]
     FloatValue speed;
 
+    FloatValue fastSpeed;
+
 
 
     [SerializeField]
@@ -19,8 +21,10 @@ public class Player : MonoBehaviour
     private Vector2 currentMovementVector;
 
     public bool CanMove { get; set; } = true;
-    
-    public Collider2D PlayerCollider { get => playerCollider;}
+
+    public bool IsFast { get; set; } = false;
+
+    public Collider2D PlayerCollider { get => playerCollider; }
 
     // Start is called before the first frame update
     void Start()

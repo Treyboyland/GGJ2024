@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8816761323910848070}
   - component: {fileID: 2279155654751896363}
   - component: {fileID: 3807990239928165313}
+  - component: {fileID: 4985195101199381662}
   m_Layer: 0
   m_Name: Wall
   m_TagString: Untagged
@@ -89,7 +90,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: a39d42f217bd1e34580c2ec3709e83e5, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 146a09e222a5173439a56683b0a64ca8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -145,3 +146,17 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 60, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &4985195101199381662
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7957300728225686467}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8001ffe9f9cdc34e9f8e765c9d7106d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerCurrentstress: {fileID: 11400000, guid: fb108b92cb36644498684f7226fd309e, type: 2}
+  stressToAdd: {fileID: 11400000, guid: 795d18c932f553c4b82206c3037f71fe, type: 2}
