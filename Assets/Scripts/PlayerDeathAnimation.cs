@@ -25,7 +25,11 @@ public class PlayerDeathAnimation : MonoBehaviour
     {
         if (shouldGrow)
         {
-            player.transform.localScale += player.transform.localScale * Time.deltaTime * unitsPerSecond;
+            var newVector = player.transform.localScale + player.transform.localScale * Time.deltaTime * unitsPerSecond;
+            if (!float.IsInfinity(newVector.x) && !float.IsInfinity(newVector.y) && !float.IsInfinity(newVector.z))
+            {
+                player.transform.localScale += player.transform.localScale * Time.deltaTime * unitsPerSecond;
+            }
         }
     }
 

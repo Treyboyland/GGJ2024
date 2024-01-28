@@ -9,6 +9,12 @@ public class PlayerVibe : MonoBehaviour
     Player player;
 
     [SerializeField]
+    BoolValue isVibing;
+
+    [SerializeField]
+    AudioSource source;
+
+    [SerializeField]
     ConstantStressOnTrigger overworldStress;
 
     [SerializeField]
@@ -33,16 +39,20 @@ public class PlayerVibe : MonoBehaviour
     {
         float active = context.ReadValue<float>();
 
-        Debug.Log("Vibing: " + active);
+        //Debug.Log("Vibing: " + active);
 
-        if (active > 0)
+        isVibing.Value = active > 0;
+
+        if (isVibing.Value)
         {
+            source.Play();
             overworldStress.ShouldRun = false;
             destresser.IsStressActive = true;
             vibeIncreaser.IsStressActive = true;
         }
         else
         {
+            source.Stop();
             overworldStress.ShouldRun = true;
             destresser.IsStressActive = false;
             vibeIncreaser.IsStressActive = false;

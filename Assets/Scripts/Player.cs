@@ -8,9 +8,8 @@ public class Player : MonoBehaviour
     [SerializeField]
     FloatValue speed;
 
-    FloatValue fastSpeed;
-
-
+    [SerializeField]
+    BoolValue isVibing;
 
     [SerializeField]
     Rigidbody2D body;
@@ -43,7 +42,7 @@ public class Player : MonoBehaviour
     /// </summary>
     private void FixedUpdate()
     {
-        if (CanMove)
+        if (CanMove && !isVibing.Value)
         {
             Move();
         }

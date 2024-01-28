@@ -8,6 +8,9 @@ public class PeriodicInterruption : MonoBehaviour
     BoolValue playSounds;
 
     [SerializeField]
+    float creepyPercentage;
+
+    [SerializeField]
     AudioSource source;
 
     [SerializeField]
@@ -23,6 +26,7 @@ public class PeriodicInterruption : MonoBehaviour
     FloatValue stressToAdd;
 
     [SerializeField] private List<AudioClip> interruptions;
+    [SerializeField] private List<AudioClip> creepyInterruptions;
 
     bool isAnnouncing = false;
 
@@ -37,7 +41,7 @@ public class PeriodicInterruption : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (playSounds && !isAnnouncing)
+        if (playSounds.Value && !isAnnouncing)
         {
             elapsed += Time.deltaTime;
             if (elapsed >= secondsBetweenAnnouncements.Value)
@@ -52,21 +56,27 @@ public class PeriodicInterruption : MonoBehaviour
     IEnumerator PlayAnnouncement()
     {
         playerCurrentstress.Value += stressToAdd.Value;
+        source.mute = !playSounds.Value;
         source.clip = startingClip;
         source.Play();
+        bool useCreepy = Random.Range(0.0f, 1.0f) < creepyPercentage;
         while (source.isPlaying)
         {
+            source.mute = !playSounds.Value;
             yield return null;
         }
 
-        source.clip = interruptions.SelectRandom();
+        source.clip = useCreepy ? creepyInterruptions.SelectRandom() : interruptions.SelectRandom();
         source.Play();
 
         while (source.isPlaying)
         {
+            source.mute = !playSounds.Value;
             yield return null;
         }
 
+        Debug.LogWarning("Done announcing");
+        source.mute = !playSounds.Value;
         isAnnouncing = false;
     }
 }
